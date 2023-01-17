@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:02:57 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 18:15:59 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:13:13 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ void	short_sorter(t_node **stack)
 		sa(stack);
 }
 
+/**
+ * It pushes the lowest number to stack2, then pushes the second lowest number to stack2, then sorts
+ * the remaining numbers in stack1, then pushes the two numbers in stack2 back to stack1
+ * 
+ * @param stack1 the stack that contains the unsorted numbers
+ * @param stack2 the stack that will be sorted
+ */
 void sorter5(t_node **stack1, t_node **stack2)
 {
 	push_lower(stack1, stack2);
 	printstack(stack1, stack2);
-	push_lower(stack1, stack2);
+	push_lower2(stack1, stack2);
 	printstack(stack1, stack2);
 	short_sorter(stack1);
 	printstack(stack1, stack2);

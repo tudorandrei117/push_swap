@@ -6,17 +6,22 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:02:44 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 18:28:57 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:27:38 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
+/**
+ * It prints the contents of the two stacks
+ * 
+ * @param stack1 The first stack
+ * @param stack2 the second stack
+ */
 void	printstack(t_node **stack1, t_node **stack2)
 {
 	t_node	*current;
 	t_node	*current2;
-
 	current2 = *stack2;
 	current = *stack1;
 	printf("--------------\n");
@@ -24,6 +29,7 @@ void	printstack(t_node **stack1, t_node **stack2)
 	{
 		printf("%d\n",current->content);
 		current = current->next;
+		i++;
 	}
 	while (current2 != NULL)
 	{
@@ -36,6 +42,14 @@ void	printstack(t_node **stack1, t_node **stack2)
 	printf("--------------\n");
 }
 
+/**
+ * It creates a new node, assigns the value to the node's content, and returns the node
+ * 
+ * @param value the value of the node
+ * @param argc the number of arguments that were passed to the program
+ * 
+ * @return A pointer to a new node.
+ */
 t_node	*ft_addstack(long value, int argc)
 {
 	t_node	*newlst;
@@ -45,10 +59,16 @@ t_node	*ft_addstack(long value, int argc)
         return (NULL);
     newlst->content = value;
     newlst->next = NULL;
-	newlst->argc = argc;
     return (newlst);
 }
 
+/**
+ * It converts a string to a long.
+ * 
+ * @param str The string to be converted.
+ * 
+ * @return the number of characters printed.
+ */
 long ft_atol(const char *str)
 {
 	long	result;

@@ -6,12 +6,20 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:07 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 18:31:46 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:57:45 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
+/**
+ * Adds a node to the end of a linked list.
+ * 
+ * @param lst A pointer to a pointer to the first node of a linked list.
+ * @param new the new node to add to the list
+ * 
+ * @return The last node in the list.
+ */
 void	ft_lstadd_back(t_node **lst, t_node *new)
 {
 	t_node	*last;
@@ -27,6 +35,13 @@ void	ft_lstadd_back(t_node **lst, t_node *new)
 	last->next = new;
 }
 
+/**
+ * It returns the last node in a linked list.
+ * 
+ * @param lst A pointer to the first node of a linked list.
+ * 
+ * @return The last node in the list.
+ */
 t_node	*ft_lstlast(t_node *lst)
 {
 	if (lst == NULL)
@@ -58,52 +73,4 @@ int	find_lowest(t_node *stack)
 	return (lowest);
 }
 
-
-
-void	push_lower(t_node **stack1, t_node **stack2)
-{
-	int 	lowest;
-	t_node *current;
-	int		argc;
-
-	argc = (*stack1)->argc;
-	current = *stack1;
-	lowest = find_lowest(current);
-	while (argc != 0)
-	{
-		printf("pb\n");
-		if (current->content == lowest)
-		{
-			ft_push(stack1, stack2);
-			break ;
-		}
-		if (current->next->content == lowest)
-		{
-			sa(stack1);
-			ft_push(stack1, stack2);
-			break ;
-		}
-		if (current->next->next->content == lowest)
-		{
-			ra(stack1);
-			sa(stack1);
-			ft_push(stack1, stack2);
-			break ;
-		}
-		if (current->next->next->next->content == lowest)
-		{
-			rra(stack1);
-			rra(stack1);
-			ft_push(stack1, stack2);
-			break ;
-		}
-		if (current->next->next->next->next->content == lowest)
-		{
-			rra(stack1);
-			ft_push(stack1, stack2);
-			break ;
-		}
-		argc--;
-	}
-}
 

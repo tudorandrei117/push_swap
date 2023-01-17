@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:53:19 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 16:45:06 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:42:09 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ void	rr(t_node **stack1, t_node **stack2)
 
 void	pa(t_node **a, t_node **b)
 {
-	ft_push(b, a);
 	write(1, "pa\n", 3);
+	ft_push(b, a);
+	
 }
 
 void	pb(t_node **a, t_node **b)
-{
-	ft_push(b, a);
+{	
 	write(1, "pb\n", 3);
+	ft_push(a, b);
 }
 
 //push

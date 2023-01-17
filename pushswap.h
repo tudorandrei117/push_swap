@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:47:38 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 18:29:26 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:54:20 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@
 # include <stdio.h>
 
 typedef struct node_a
-{
+{	
+	int				index;
 	int				content;
 	struct node_a	*next;
-	int				argc;
 }				t_node;
+
+typedef struct s_index
+{
+	int 			idx;
+	struct s_index *next;
+}				t_index;
 
 //main operations
 void		ft_swap(t_node **stack);
-//t_node *ft_lstsecondlast(t_node *head);
 void		ft_rotate(t_node **stack);
 void		ft_reverse(t_node **stack);
 void		ft_push(t_node **stack1, t_node **stack2);
@@ -50,19 +55,26 @@ void		ss(t_node **stack1, t_node **stack2);
 //operations
 
 //sorters
+void		push_lower2(t_node **stack1, t_node **stack2);
+void		push_lower(t_node **stack1, t_node **stack2);
 void		short_sorter(t_node **stack);
+void 		sorter5(t_node **stack1, t_node **stack2);
 //sorters
 
 //utils
+void 		ft_index(t_node *stack1);
+int			find_lowest(t_node *stack);
 void		ft_lstadd_back(t_node **lst, t_node *new);
 t_node		*ft_lstlast(t_node *lst);
-void		push_lower(t_node **stack1, t_node **stack2);
 void		printstack(t_node **current, t_node **current2);
 t_node		*ft_addstack(long value, int argc);
 long		ft_atol(const char *str);
-t_node		*push_swap(int argc, char **argv);
-void 		sorter5(t_node **stack1, t_node **stack2);
+
 //utils
+
+//stuff
+t_node		*push_swap(int argc, char **argv);
+//stuff
 
 #endif
 

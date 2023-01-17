@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:52:33 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/13 18:29:14 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:47:32 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv)
 	
 	stack_a = push_swap(argc, argv);
 	stack_b = NULL;
-
 	if (argc < 5)
 	{
 		short_sorter(&stack_a);
@@ -52,7 +51,6 @@ int	main(int argc, char **argv)
 		sorter5(&stack_a, &stack_b);
 	}
 	printstack(&stack_a, &stack_b);
-
 	return (0);
 }
 
