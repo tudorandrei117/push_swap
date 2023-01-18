@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:02:44 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/17 16:27:38 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:02:39 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	printstack(t_node **stack1, t_node **stack2)
 	{
 		printf("%d\n",current->content);
 		current = current->next;
-		i++;
 	}
 	while (current2 != NULL)
 	{
@@ -61,14 +60,6 @@ t_node	*ft_addstack(long value, int argc)
     newlst->next = NULL;
     return (newlst);
 }
-
-/**
- * It converts a string to a long.
- * 
- * @param str The string to be converted.
- * 
- * @return the number of characters printed.
- */
 long ft_atol(const char *str)
 {
 	long	result;
@@ -88,3 +79,4 @@ long ft_atol(const char *str)
 	}
     return (sign * result);
 }
+

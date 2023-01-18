@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:47:38 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/17 16:54:20 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:38:29 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,9 @@
 
 typedef struct node_a
 {	
-	int				index;
 	int				content;
 	struct node_a	*next;
 }				t_node;
-
-typedef struct s_index
-{
-	int 			idx;
-	struct s_index *next;
-}				t_index;
 
 //main operations
 void		ft_swap(t_node **stack);
@@ -69,6 +62,8 @@ t_node		*ft_lstlast(t_node *lst);
 void		printstack(t_node **current, t_node **current2);
 t_node		*ft_addstack(long value, int argc);
 long		ft_atol(const char *str);
+void 		sort_array_ascending(int* array, int size);
+void 		list2array(t_node **stack1, int *array, int size);
 
 //utils
 
@@ -77,5 +72,4 @@ t_node		*push_swap(int argc, char **argv);
 //stuff
 
 #endif
-
 
