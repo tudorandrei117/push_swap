@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:07 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/17 16:57:45 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:43:09 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,15 @@ int	find_lowest(t_node *stack)
 	return (lowest);
 }
 
+int	ft_lstsize(t_node *stack)
+{
+	int	i;
 
+	i = 0;
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}

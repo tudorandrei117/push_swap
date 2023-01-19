@@ -6,7 +6,7 @@
 /*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:47:38 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/18 15:38:29 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:09:13 by tburlacu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct node_a
 {	
+	struct node_a 	*head;
 	int				content;
 	struct node_a	*next;
 }				t_node;
