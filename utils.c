@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:07 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/19 15:43:09 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:04:05 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ int	find_lowest(t_node *stack)
 	return (lowest);
 }
 
-int	ft_lstsize(t_node *stack)
+int	ft_lstsize(t_node *stack1)
 {
 	int	i;
 
 	i = 0;
-	while (stack != NULL)
+	while (stack1 != NULL)
 	{
-		stack = stack->next;
+		stack1 = stack1->next;
 		i++;
 	}
 	return (i);

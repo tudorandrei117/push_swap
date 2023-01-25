@@ -3,20 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:54:27 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/19 17:58:17 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:33:35 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void list2array(t_node **stack1, int *array, int size)
+static int	sizeofarray(int *array)
 {
-	t_node *current;
-	int i;
-	
+	int	count;
+
+	count = 0;
+	while (*array++)
+		count++;
+	return (count);
+}
+
+void	list2array(t_node **stack1, int *array, int size)
+{
+	t_node	*current;
+	int		i;
+
 	current = *stack1;
 	i = 0;
 	while (current != NULL)
@@ -28,17 +38,17 @@ void list2array(t_node **stack1, int *array, int size)
 	size = i;
 }
 
-void sort_array_ascending(int* array, int size) 
+void	sort_array_ascending(int *array, int size)
 {
-    int temp;
-	int i;
-	int j;
+	int	temp;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(i < size - 1)
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while(j < size)
+		while (j < size)
 		{
 			if (array[i] > array[j])
 			{
@@ -52,57 +62,82 @@ void sort_array_ascending(int* array, int size)
 	}
 }
 
-void ft_pushtotop(t_node **stack1)
+void	ft_pushtotop(t_node **stack1)
 {
-	t_node *current;
+	t_node *current = *stack1;
+	int	pos;
+	int	size;
+	int	half;
+
+	pos = get_position(&current);
+	size = ft_lstsize(current);
+	half = size / 2;
+	printf("pos%d", pos);
+	if (pos > half)
+	{
+		while (pos > 0)
+		{
+			rra(&current);
+			pos--;
+		}
+	}
+	else if (pos <= half)
+	{
+		while (pos > 0)
+		{
+			ra(&current);
+			pos--;
+		}
+	}
+}
+
+int	get_position(t_node **stack1)
+{
+	t_node	*current;
+	int		pos;
+
+	current = (*stack1)->head;
+	pos = 1;
+	// Iterate through the stack to find the position of the current node
+	while (current)
+	{
+		if (current->content == (*stack1)->content)
+		{
+			return (pos);
+		}
+		current = current->next;
+		pos++;
+	}
+	
+	return (pos);
+}
+
+void	match_finder(t_node *stack1, t_node *stack2, int arr[], int size)
+{
+	t_node	*current;
+	int		i;
+	int j = 0;
+
 	current = stack1;
-	t_node *half;
-	half = lstsize(stack1) / 2;
-	if (get_pos(stack1) > half)
-	{
-		while(get_pos(stack1) == (*stack1)->head)
-		{
-			rra(stack1);
-		}
-	}
-		else if (get_pos(stack1) <= half)
-	{
-		while(get_pos(stack1) == (*stack1)->head)
-		{
-			ra(stack1);
-		}
-	}
-	
-}
-
-int get_position(t_node *stack1) 
-{
-    t_node *temp;
-	temp = stack1->head; 
-    int pos = 1; 
-	
-    while (temp != stack1)
-	{ 
-        temp = temp->next; 
-        pos++;
-    }
-    return pos;
-}
-
-
-int array(int *array, t_node **stack1, t_node **stack2)
-{
-	int i;
 	i = 0;
-	while(*stack1->next != NULL)
+	while (current)
 	{
-		While(array[i])
+		while (i < size && j < 3)
 		{
-			if(array[i] == *stack1->content)
-				{
-				ft_pushtotop(stack1);
-					pb(stack1, stack2)
+			printf("i: %d, pos do array: %d\n", i, arr[j]);
+			printf("valor da stack : %d\n", current->content);
+			if (current->content == arr[j])
+			{
+				printf("Match found\n");
+				ft_pushtotop(&stack1);
+				printstack(&stack1, &stack2);
+				pb(&stack1, &stack2);
+			}
+			current = current->next;
+			i++;
 		}
-		}
+		i = 0;
+		j++;
 	}
+	printstack(&stack1, &stack2);
 }
