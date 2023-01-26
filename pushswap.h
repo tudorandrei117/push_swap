@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tburlacu <tburlacu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:47:38 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/19 16:09:13 by tburlacu         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:08:18 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ t_node		*ft_addstack(long value, int argc);
 long		ft_atol(const char *str);
 void 		sort_array_ascending(int* array, int size);
 void 		list2array(t_node **stack1, int *array, int size);
+void		array(int *array, t_node **stack1, t_node **stack2);
+int			get_position(t_node **stack1);
+void 		ft_pushtotop(t_node **stack1);
+int			ft_lstsize(t_node *stack1);
 
 //utils
 
@@ -74,3 +78,4 @@ t_node		*push_swap(int argc, char **argv);
 
 #endif
 
+void	match_finder(t_node *list1, t_node *list2, int arr[], int size);

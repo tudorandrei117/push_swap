@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:54:27 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/25 17:33:35 by tudor            ###   ########.fr       */
+/*   Updated: 2023/01/26 12:45:34 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	ft_pushtotop(t_node **stack1)
 	int	size;
 	int	half;
 
-	pos = get_position(&current);
+	pos = get_position(stack1);
 	size = ft_lstsize(current);
 	half = size / 2;
-	printf("pos%d", pos);
+	printf("pos %d\n half %d\n", pos, half);
 	if (pos > half)
 	{
 		while (pos > 0)
@@ -97,13 +97,16 @@ int	get_position(t_node **stack1)
 	int		pos;
 
 	current = (*stack1)->head;
+	printstack(&current, stack1);
 	pos = 1;
 	// Iterate through the stack to find the position of the current node
 	while (current)
 	{
+		printf("entrei\n");
 		if (current->content == (*stack1)->content)
 		{
 			return (pos);
+			printf("pos2:%d\n", pos);
 		}
 		current = current->next;
 		pos++;
@@ -124,7 +127,7 @@ void	match_finder(t_node *stack1, t_node *stack2, int arr[], int size)
 	{
 		while (i < size && j < 3)
 		{
-			printf("i: %d, pos do array: %d\n", i, arr[j]);
+			printf("i: %d, vlr do array: %d\n", i, arr[j]);
 			printf("valor da stack : %d\n", current->content);
 			if (current->content == arr[j])
 			{
