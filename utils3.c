@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:54:27 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/27 17:54:40 by tudor            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:47:41 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,84 +62,76 @@ void	sort_array_ascending(int *array, int size)
 	}
 }
 
-void	ft_pushtotop(t_node **stack1)
+void	ft_pushtotop(t_node **stack1, int cont)
 {
 	int	half;
 	int	current;
 
 	half = ft_lstsize(*stack1) / 2;
-	current = get_position(stack1);
-	if (current > half)
+	printf("tamanho da stack %d\n", ft_lstsize(*stack1));
+	printf("tamanho do half %d\n", half);
+	current = cont;
+	printf("valor da pos %d\n", current);
+	if (current == 1)
 	{
-		while (current >= 0)
-		{
-			rra(stack1);
-			current--;
-		}
+		return ;
 	}
-	else if (current <= half)
+	if (current < half)
 	{
-		while (current >= 0)
+		while (current >= 1)
 		{
+			current--;
 			ra(stack1);
-			current--;
+		}
+	}
+	else if (current >= half)
+	{
+		while (current > half && current <= ft_lstsize(*stack1))
+		{
+			current++;
+			rra(stack1);
 		}
 	}
 }
 
-int	get_position(t_node **stack1)
-{
-	int		pos;
-	t_node	*start;
-	t_node	*current;
-
-	pos = 1;
-	current = *stack1;
-	start = (*stack1)->head;
-	while (current)
-	{
-		printf("entrei no getpos!\n");
-		if (current->content == start->content)
-		{
-			printf("entrei no pos!!!\n");
-			return (pos);
-		}
-		current = current->next;
-		pos++;
-	}//e so vafer uma temporaria
-	return (-1);
-}
-
-void	match_finder(t_node **stack1, t_node **stack2, int *array)
+void	match_finder(t_node **stack1, t_node **stack2, int *array, int size)
 {
 	t_node	*current;
 	int		i;
-
+	int		pos;
+	int 	lever;
+	
+	pos = 1;
 	current = *stack1;
 	i = 0;
 	while (current)
 	{
-		printf("lst\n");
-		while (i < 3)
+		lever = 0;
+		while (i < size)
 		{
-			printf("valor do current %d\tvalor do array %d\n", current->content, array[i]);
+			printf("valor do current %d\tvalor do array %d\n", current->content,
+					array[i]);
 			if (current->content == array[i])
 			{
 				printf("\nmatchfound!!!!!\n");
-				ft_pushtotop(stack1);
-				pb(stack1, stack2);
+				printf("Printf antes do pushtotop!\n");
 				printstack(stack1, stack2);
-				current = (*stack1)->head;
+				ft_pushtotop(stack1, pos);
+				printf("printstack depois do pushtotop\n");
+				printstack(stack1, stack2);
+				pb(stack1, stack2);
 				printf("current = %d\n", (*stack1)->next->content);
-				break;
+				printf("printstack depois do pb!\n");
+				printstack(stack1, stack2);
+				current = *stack1;
+				pos = 0;
+				lever = 1;
 			}
 			i++;
 		}
-		
-		printf("oh bebe gosto mais de voce\n");
+		pos++;
 		i = 0;
-		printf("bruh");
+		if(lever == 0)
 		current = current->next;
-		
 	}
 }
