@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:54:27 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/02/01 15:37:20 by tudor            ###   ########.fr       */
+/*   Updated: 2023/02/01 16:59:38 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	ft_pushtotop(t_node **stack1, t_node **stack2, int cont)
 		ft_push_to_top_before_half(stack1, cont);
 	else if (cont >= half)
 		ft_push_to_top_after_half(stack1, cont);
+	stack_organizer(stack1, stack2);
 	pb(stack1, stack2);
 }
-
 
 void	match_finder(t_node **stack1, t_node **stack2, int *array, int size)
 {
