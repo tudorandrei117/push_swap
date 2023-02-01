@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:47:38 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/30 17:08:15 by tudor            ###   ########.fr       */
+/*   Updated: 2023/02/01 15:35:57 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void				list2array(t_node **stack1, int *array, int size);
 void				array(int *array, t_node **stack1, t_node **stack2);
 int					get_position(t_node **stack1, int cont);
 int					ft_lstsize(t_node *stack1);
-void 				ft_pushtotop(t_node **stack1, int cont);
+void 				ft_pushtotop(t_node **stack1, t_node **stack2, int cont);
+t_node				*check_lever(int leaver, int pos, t_node **stack1, t_node *current);
 
 //utils
 

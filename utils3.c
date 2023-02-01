@@ -6,132 +6,82 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:54:27 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/01/30 17:47:41 by tudor            ###   ########.fr       */
+/*   Updated: 2023/02/01 15:37:20 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static int	sizeofarray(int *array)
+static void	ft_push_to_top_first(t_node **stack1)
 {
-	int	count;
-
-	count = 0;
-	while (*array++)
-		count++;
-	return (count);
+	ra(stack1);
 }
 
-void	list2array(t_node **stack1, int *array, int size)
-{
-	t_node	*current;
-	int		i;
-
-	current = *stack1;
-	i = 0;
-	while (current != NULL)
-	{
-		array[i] = current->content;
-		current = current->next;
-		i++;
-	}
-	size = i;
-}
-
-void	sort_array_ascending(int *array, int size)
-{
-	int	temp;
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (array[i] > array[j])
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_pushtotop(t_node **stack1, int cont)
+static void	ft_push_to_top_before_half(t_node **stack1, int cont)
 {
 	int	half;
-	int	current;
 
 	half = ft_lstsize(*stack1) / 2;
-	printf("tamanho da stack %d\n", ft_lstsize(*stack1));
-	printf("tamanho do half %d\n", half);
-	current = cont;
-	printf("valor da pos %d\n", current);
-	if (current == 1)
+	while (cont >= 1)
 	{
-		return ;
-	}
-	if (current < half)
-	{
-		while (current >= 1)
-		{
-			current--;
-			ra(stack1);
-		}
-	}
-	else if (current >= half)
-	{
-		while (current > half && current <= ft_lstsize(*stack1))
-		{
-			current++;
-			rra(stack1);
-		}
+		cont--;
+		ra(stack1);
 	}
 }
+
+static void	ft_push_to_top_after_half(t_node **stack1, int cont)
+{
+	int	half;
+
+	half = ft_lstsize(*stack1) / 2;
+	while (cont < half && cont != ft_lstsize(*stack1))
+	{
+		cont++;
+		rra(stack1);
+	}
+}
+
+void	ft_pushtotop(t_node **stack1, t_node **stack2, int cont)
+{
+	int	half;
+
+	printf("valor da posicao %d\n", cont);
+	half = ft_lstsize(*stack1) / 2;
+	if (cont == 1)
+		ft_push_to_top_first(stack1);
+	else if (cont < half)
+		ft_push_to_top_before_half(stack1, cont);
+	else if (cont >= half)
+		ft_push_to_top_after_half(stack1, cont);
+	pb(stack1, stack2);
+}
+
 
 void	match_finder(t_node **stack1, t_node **stack2, int *array, int size)
 {
 	t_node	*current;
 	int		i;
 	int		pos;
-	int 	lever;
-	
+
 	pos = 1;
 	current = *stack1;
-	i = 0;
 	while (current)
 	{
-		lever = 0;
+		i = 0;
 		while (i < size)
 		{
-			printf("valor do current %d\tvalor do array %d\n", current->content,
-					array[i]);
 			if (current->content == array[i])
 			{
-				printf("\nmatchfound!!!!!\n");
-				printf("Printf antes do pushtotop!\n");
-				printstack(stack1, stack2);
-				ft_pushtotop(stack1, pos);
-				printf("printstack depois do pushtotop\n");
-				printstack(stack1, stack2);
-				pb(stack1, stack2);
-				printf("current = %d\n", (*stack1)->next->content);
-				printf("printstack depois do pb!\n");
-				printstack(stack1, stack2);
+				ft_pushtotop(stack1, stack2, pos);
 				current = *stack1;
 				pos = 0;
-				lever = 1;
+				i = -1;
+				printstack(stack1, stack2);
 			}
 			i++;
 		}
+		if (i >= 0)
+			current = current->next;
 		pos++;
-		i = 0;
-		if(lever == 0)
-		current = current->next;
 	}
 }
