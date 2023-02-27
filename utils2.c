@@ -82,7 +82,7 @@ long	ft_atol(const char *str)
 	return (sign * result);
 }
 
-void	list2array(t_node **stack1, int *array, int size)
+void	list2array(t_node **stack1, int *array)
 {
 	t_node	*current;
 	int		i;
@@ -95,7 +95,6 @@ void	list2array(t_node **stack1, int *array, int size)
 		current = current->next;
 		i++;
 	}
-	size = i;
 }
 
 void	sort_array_ascending(int *array, int size)

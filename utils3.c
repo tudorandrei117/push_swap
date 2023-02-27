@@ -12,76 +12,144 @@
 
 #include "pushswap.h"
 
-static void	ft_push_to_top_first(t_node **stack1)
+void	ft_reverse_stack(t_node **stack1, t_node **stack2, int i)
 {
-	ra(stack1);
-}
-
-static void	ft_push_to_top_before_half(t_node **stack1, int cont)
-{
-	int	half;
-
-	half = ft_lstsize(*stack1) / 2;
-	while (cont >= 1)
+	if (i > 0)
 	{
-		cont--;
-		ra(stack1);
+		while (i >= 0)
+		{
+			rb(stack2);
+			i--;
+		}
+	}
+	else if (i < 0)
+	{
+		while (i < 0)
+		{
+			rrb(stack2);
+			i++;
+		}
 	}
 }
 
-static void	ft_push_to_top_after_half(t_node **stack1, int cont)
+void	ft_push_to_top_b(t_node **stack1, t_node **stack2, int pos)
 {
-	int	half;
+	int	h;
+	int	i;
 
-	half = ft_lstsize(*stack1) / 2;
-	while (cont < half && cont != ft_lstsize(*stack1))
+	i = 0;
+	h = ft_lstsize(*stack2) + 1 - pos;
+	if (pos < ((ft_lstsize(*stack2)) / 2))
 	{
-		cont++;
-		rra(stack1);
+		while (pos > 1)
+		{
+			pos--;
+			rb(stack2);
+			i--;
+		}
 	}
-}
-
-void	ft_pushtotop(t_node **stack1, t_node **stack2, int cont)
-{
-	int	half;
-
-	printf("valor da posicao %d\n", cont);
-	half = ft_lstsize(*stack1) / 2;
-	if (cont == 1)
-		ft_push_to_top_first(stack1);
-	else if (cont < half)
-		ft_push_to_top_before_half(stack1, cont);
-	else if (cont >= half)
-		ft_push_to_top_after_half(stack1, cont);
-	stack_organizer(stack1, stack2);
+	else if (pos >= ((ft_lstsize(*stack2)) / 2))
+	{
+		while (h > 0)
+		{
+			h--;
+			rrb(stack2);
+			i++;
+		}
+	}
 	pb(stack1, stack2);
+	ft_reverse_stack(stack1, stack2, i);
 }
 
-void	match_finder(t_node **stack1, t_node **stack2, int *array, int size)
+void	stack_mid_organizer(t_node **stack1, t_node **stack2)
 {
 	t_node	*current;
+	t_node	*current2;
+	double	div;
+	int		pos;
+	int		num;
+
+	current = *stack1;
+	current2 = *stack2;
+	pos = 0;
+	div = 1;
+	num = current->content;
+	/*  if (num < 0)
+		num = current->content * -1; */
+	//	printf("num:%d\n", num);
+	while (pos <= 100 && div > 0) //|| current2 ->content < 0 && num < 0
+	{
+		//if (current2 ->content != num *-1)
+		div = current2->content / num;
+		//printf("div:%f\n", div);
+		pos++;
+		current2 = current2->next;
+	}
+	ft_push_to_top_b(stack1, stack2, pos);
+	//printstack(stack1, stack2);
+}
+
+void	negative_organizer(t_node **stack1, t_node **stack2)
+{
+	t_node	*current1;
+	t_node	*current2;
 	int		i;
 	int		pos;
 
-	pos = 1;
-	current = *stack1;
-	while (current)
+	current1 = *stack1;
+	current2 = *stack2;
+	pos = 0;
+	i = 0;
+	while (current2->content > 0 && current2)
 	{
-		i = 0;
-		while (i < size)
-		{
-			if (current->content == array[i])
-			{
-				ft_pushtotop(stack1, stack2, pos);
-				current = *stack1;
-				pos = 0;
-				i = -1;
-				printstack(stack1, stack2);
-			}
-			i++;
-		}
-		if (i >= 0)
-			current = current->next;
+		current2 = current2->next;
 		pos++;
 	}
+	while (current2->content / current1->content < 0 && current2)
+	{
+		current2 = current2->next;
+		pos++;
+	}
+	while (pos++ != ft_lstsize(*stack2) && i++ < 100000)
+		rrb(stack2);
+	pb(stack1, stack2);
+	ft_reverse_stack(stack1, stack2, i);
+}
+
+void	stack_organizer(t_node **stack1, t_node **stack2)
+{
+	t_node	*current;
+	t_node	*current2;
+
+	current = *stack1;
+	current2 = *stack2;
+	if (current2 == NULL)
+		pb(stack1, stack2);
+	else if (current->content > current2->content)
+		pb(stack1, stack2);
+	else if (current->content < ft_lstlast(*stack2)->content)
+	{
+		pb(stack1, stack2);
+		rb(stack2);
+	}
+	else if (current->content < current2->content
+			&& current->content > current2->next->content)
+	{
+		pb(stack1, stack2);
+		sb(stack2);
+	}
+	else if (current->content < 0)
+		negative_organizer(stack1, stack2);
+	else
+		stack_mid_organizer(stack1, stack2);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }
