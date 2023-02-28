@@ -14,6 +14,7 @@
 # define PUSHSWAP_H
 
 # include <limits.h>
+# include <stdbool.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,6 +28,7 @@ typedef struct node_a
 }					t_node;
 
 //main operations
+
 void				ft_swap(t_node **stack);
 void				ft_rotate(t_node **stack);
 void				ft_reverse(t_node **stack);
@@ -55,7 +57,7 @@ void				sorter5(t_node **stack1, t_node **stack2);
 //sorters
 
 //utils
-
+int					ft_strisdigit(const char *str);
 int					find_lowest(t_node *stack);
 void				ft_lstadd_back(t_node **lst, t_node *new);
 t_node				*ft_lstlast(t_node *lst);
@@ -72,6 +74,10 @@ void				stack_organizer(t_node **stack1, t_node **stack2);
 size_t				ft_strlen(const char *str);
 void				negative_sorter(t_node **stack1, t_node **stack2);
 void				ft_push_to_top_b(t_node **stack1, t_node **stack2, int pos);
+int					**create_chunk_array(int *arr, int arr_size, int chunk_size,
+						int *num_chunks);
+int					*create_chunk(int *arr, int start_index, int end_index);
+
 //utils
 
 //stuff

@@ -1,13 +1,5 @@
 #include "pushswap.h"
 
-int	module(int n)
-{
-	if (n < 0)
-		return (-n);
-	else
-		return (n);
-}
-
 void	negative_sorter(t_node **stack1, t_node **stack2)
 {
 	t_node	*current;
@@ -35,4 +27,63 @@ void	negative_sorter(t_node **stack1, t_node **stack2)
 	}
     ft_push_to_top_b(stack1, stack2, pos);
     printf("negative!!!!\n");
+}
+
+int ft_strisdigit(const char *str)
+{
+    int i;
+
+    i = 0;
+    if (str[i] == '-')
+        i++;
+    while (str[i] != '\0')
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int	*create_chunk(int *arr, int start_index, int end_index)
+{
+	int	*chunk;
+	int	i;
+
+	i = 0;
+	chunk = malloc((end_index - start_index) * sizeof(int));
+	while (start_index + i < end_index)
+	{
+		chunk[i] = arr[start_index + i];
+		i++;
+	}
+	return (chunk);
+}
+
+int	**create_chunk_array(int *arr, int arr_size, int chunk_size,
+int *num_chunks)
+{
+	int	num;
+	int	**chunks;
+	int	i;
+	int	j;
+	int	end_index;
+
+	num = (arr_size + chunk_size - 1) / chunk_size;
+	chunks = malloc(num * sizeof(int *));
+	i = 0;
+	j = 0;
+	while (i < arr_size && j < num)
+	{
+		end_index = i + chunk_size;
+		if (end_index > arr_size)
+		{
+			end_index = arr_size;
+		}
+		chunks[j] = create_chunk(arr, i, end_index);
+		i += chunk_size;
+		j++;
+	}
+	*num_chunks = num;
+	return (chunks);
 }
