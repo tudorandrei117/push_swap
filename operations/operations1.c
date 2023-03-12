@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:11 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/03/05 22:26:17 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/12 13:06:33 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,9 @@ void	ft_push(t_node **stack1, t_node **stack2)
 	*stack2 = top_a;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// rrr
-
 void	rrr(t_node **stack1, t_node **stack2)
 {
 	ft_reverse(stack1);
 	ft_reverse(stack2);
 	write(1, "rrr\n", 4);
 }
-
-// rrr

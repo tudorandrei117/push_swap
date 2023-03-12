@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:21:33 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/08 14:24:19 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/12 13:05:09 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,28 @@ void	ft_push_top(t_node **stack1)
 {
 	int		half;
 	int		lowest;
-	t_node	*current;
 	int		pos;
+	t_node	*current;
 
-	current = *stack1;
-	lowest = find_lowest(stack1);
 	half = ft_lstsize(*stack1) / 2;
-	while (current)
+	lowest = find_lowest(stack1);
+	pos = 0;
+	current = *stack1;
+	while (current && current->content != lowest)
 	{
-		if (current->content == lowest)
-			break ;
+		pos++;
 		current = current->next;
 	}
-	if (pos < half)
+	if (pos >= half)
 	{
-		while (pos > 0)
-		{
-			pos--;
-			ra(stack1);
-		}
+		pos = ft_lstsize(*stack1) - pos;
+		while (pos-- > 0)
+			rra(stack1);
 	}
 	else
 	{
-		while (pos < ft_lstsize(*stack1) - 1)
-		{
-			pos++;
-			rra(stack1);
-		}
+		while (pos-- > 0)
+			ra(stack1);
 	}
 }
 
@@ -104,4 +99,3 @@ int	find_lowest_index(t_node **stack)
 	*stack = temp;
 	return (i);
 }
-

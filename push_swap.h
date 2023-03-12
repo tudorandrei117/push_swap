@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 20:15:05 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/08 14:22:16 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/12 13:07:41 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int					find_lowest(t_node **stack);
 //sorters
 
 //list utils
-int	find_lowestforshort(t_node *stack);
+int					find_lowestforshort(t_node *stack);
 void				ft_lstadd_back(t_node **lst, t_node *new);
 t_node				*ft_lstlast(t_node *lst);
 t_node				*ft_addstack(long value);

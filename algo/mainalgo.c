@@ -6,128 +6,128 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:52:50 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/10 14:18:32 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/12 12:57:38 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	all_upper_half(t_node **stack_a, t_node **stack_b)
+static void	upper_2(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*elem;
+	t_node	*node;
 	t_node	*best;
-	int		cost_a;
-	int		cost_b;
+	int		firstcost;
+	int		secondcost;
 
-	elem = min_cost(stack_a, stack_b);
-	best = best_match(*stack_a, elem);
-	cost_a = total_cost(stack_a, best);
-	cost_b = total_cost(stack_b, elem);
-	while (cost_a > 0 && cost_b > 0)
+	node = min_cost(stack_a, stack_b);
+	best = best_match(*stack_a, node);
+	firstcost = total_cost(stack_a, best);
+	secondcost = total_cost(stack_b, node);
+	while (firstcost > 0 && secondcost > 0)
 	{
 		rr(stack_a, stack_b);
-		cost_a--;
-		cost_b--;
+		firstcost--;
+		secondcost--;
 	}
-	if (cost_a > 0)
-		while (cost_a-- > 0)
+	if (firstcost > 0)
+		while (firstcost-- > 0)
 			ra(stack_a);
-	else if (cost_b > 0)
-		while (cost_b-- > 0)
+	else if (secondcost > 0)
+		while (secondcost-- > 0)
 			rb(stack_b);
 }
 
-static void	all_lower_half(t_node **stack_a, t_node **stack_b)
+static void	lower_2(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*elem;
+	t_node	*node;
 	t_node	*best;
-	int		cost_a;
-	int		cost_b;
+	int		firstcost;
+	int		secondcost;
 
-	elem = min_cost(stack_a, stack_b);
-	best = best_match(*stack_a, elem);
-	cost_a = total_cost(stack_a, best);
-	cost_b = total_cost(stack_b, elem);
-	while (cost_a > 0 && cost_b > 0)
+	node = min_cost(stack_a, stack_b);
+	best = best_match(*stack_a, node);
+	firstcost = total_cost(stack_a, best);
+	secondcost = total_cost(stack_b, node);
+	while (firstcost > 0 && secondcost > 0)
 	{
 		rrr(stack_a, stack_b);
-		cost_a--;
-		cost_b--;
+		firstcost--;
+		secondcost--;
 	}
-	if (cost_a > 0)
-		while (cost_a-- > 0)
+	if (firstcost > 0)
+		while (firstcost-- > 0)
 			rra(stack_a);
-	else if (cost_b > 0)
-		while (cost_b-- > 0)
+	else if (secondcost > 0)
+		while (secondcost-- > 0)
 			rrb(stack_b);
 }
 
-static void	upper_half(t_node **stack_a, t_node **stack_b, char stack)
+static void	upper_1(t_node **stack_a, t_node **stack_b, char stack)
 {
-	t_node	*elem;
+	t_node	*node;
 	t_node	*best;
-	int		cost_a;
-	int		cost_b;
+	int		firstcost;
+	int		secondcost;
 
-	elem = min_cost(stack_a, stack_b);
-	best = best_match(*stack_a, elem);
-	cost_a = total_cost(stack_a, best);
-	cost_b = total_cost(stack_b, elem);
+	node = min_cost(stack_a, stack_b);
+	best = best_match(*stack_a, node);
+	firstcost = total_cost(stack_a, best);
+	secondcost = total_cost(stack_b, node);
 	if (stack == 'a')
 	{
-		while (cost_a-- > 0)
+		while (firstcost-- > 0)
 			ra(stack_a);
 	}
 	if (stack == 'b')
 	{
-		while (cost_b-- > 0)
+		while (secondcost-- > 0)
 			rb(stack_b);
 	}
 }
 
-static void	lower_half(t_node **stack_a, t_node **stack_b, char stack)
+static void	lower_1(t_node **stack_a, t_node **stack_b, char stack)
 {
-	t_node	*elem;
+	t_node	*node;
 	t_node	*best;
-	int		cost_a;
-	int		cost_b;
+	int		firstcost;
+	int		secondcost;
 
-	elem = min_cost(stack_a, stack_b);
-	best = best_match(*stack_a, elem);
-	cost_a = total_cost(stack_a, best);
-	cost_b = total_cost(stack_b, elem);
+	node = min_cost(stack_a, stack_b);
+	best = best_match(*stack_a, node);
+	firstcost = total_cost(stack_a, best);
+	secondcost = total_cost(stack_b, node);
 	if (stack == 'a')
 	{
-		while (cost_a-- > 0)
+		while (firstcost-- > 0)
 			rra(stack_a);
 	}
 	if (stack == 'b')
 	{
-		while (cost_b-- > 0)
+		while (secondcost-- > 0)
 			rrb(stack_b);
 	}
 }
 
 void	send_to_a(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*elem;
+	t_node	*node;
 	t_node	*best;
 
-	elem = min_cost(stack_a, stack_b);
-	best = best_match(*stack_a, elem);
-	if (best->half == 0 && elem->half == 0)
-		all_upper_half(stack_a, stack_b);
-	else if (best->half == 1 && elem->half == 1)
-		all_lower_half(stack_a, stack_b);
-	else if (best->half == 1 && elem->half == 0)
+	node = min_cost(stack_a, stack_b);
+	best = best_match(*stack_a, node);
+	if (best->half == 0 && node->half == 0)
+		upper_2(stack_a, stack_b);
+	else if (best->half == 1 && node->half == 1)
+		lower_2(stack_a, stack_b);
+	else if (best->half == 1 && node->half == 0)
 	{
-		lower_half(stack_a, stack_b, 'a');
-		upper_half(stack_a, stack_b, 'b');
+		lower_1(stack_a, stack_b, 'a');
+		upper_1(stack_a, stack_b, 'b');
 	}
-	else if (best->half == 0 && elem->half == 1)
+	else if (best->half == 0 && node->half == 1)
 	{
-		upper_half(stack_a, stack_b, 'a');
-		lower_half(stack_a, stack_b, 'b');
+		upper_1(stack_a, stack_b, 'a');
+		lower_1(stack_a, stack_b, 'b');
 	}
 	pa(stack_a, stack_b);
 }
