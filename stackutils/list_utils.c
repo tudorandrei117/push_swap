@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:07 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/03/05 22:29:11 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/13 17:27:45 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	create_list(int ac, char **av, t_node **stack)
 	i = 1;
 	while (i < ac)
 	{
-		ft_lstadd_back(stack, ft_addstack(ft_atol(av[i])));
+		ft_lstadd_back(stack, ft_addstack(ft_atoi(av[i])));
 		i++;
 	}
 }

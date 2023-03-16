@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:35 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/03/12 13:07:56 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/12 13:44:14 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_a = create_stack(argc, argv);
 	main_sorter(argc, &stack_a, &stack_b);
-	lstclear(&stack_a);
-	lstclear(&stack_b);
+	ft_lstclear(&stack_a);
+	ft_lstclear(&stack_b);
 }

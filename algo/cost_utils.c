@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 21:35:24 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/12 13:06:57 by tudor            ###   ########.fr       */
+/*   Created: 2023/03/12 12:58:32 by tudor             #+#    #+#             */
+/*   Updated: 2023/03/14 11:45:26 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,23 @@ int	best_push(t_node *stack1, t_node *stack2, t_node *node1, t_node *node2)
 		return (firstcost + secondcost);
 }
 
-t_node	*best_match(t_node *stack1, t_node *stack2)
+t_node	*best_match(t_node *st_a, t_node *st_b)
 {
-	unsigned long long	index;
-	t_node				*current;
+	t_node	*neigh;
+	double	diff;
 
-	current = stack1;
-	index = 10000000000000;
-	while (stack1->next != NULL)
+	neigh = st_a;
+	diff = 99999999999;
+	while (st_a)
 	{
-		if (return_difference(stack1, stack2) < index
-			&& stack1->content > stack2->content)
+		if (return_difference(st_a, st_b) < diff && st_a->content > st_b->content)
 		{
-			index = return_difference(stack1, stack2);
-			current = stack1;
+			diff = return_difference(st_a, st_b);
+			neigh = st_a;
 		}
-		stack1 = stack1->next;
+		st_a = st_a->next;
 	}
-	return (current);
+	return (neigh);
 }
 
 t_node	*min_cost(t_node **stack_a, t_node **stack_b)

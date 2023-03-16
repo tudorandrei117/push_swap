@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:21:33 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/12 13:05:09 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/13 15:37:40 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,26 @@ int	find_mid(t_node **stack)
 
 void	ft_push_top(t_node **stack1)
 {
-	int		half;
-	int		lowest;
-	int		pos;
-	t_node	*current;
+	int		i;
+	t_node	*temp;
 
-	half = ft_lstsize(*stack1) / 2;
-	lowest = find_lowest(stack1);
-	pos = 0;
-	current = *stack1;
-	while (current && current->content != lowest)
+	i = find_lowest(stack1);
+	temp = *stack1;
+	while (temp)
 	{
-		pos++;
-		current = current->next;
+		if (temp->content == i)
+			break ;
+		temp = temp->next;
 	}
-	if (pos >= half)
+	if (half(stack1, temp) == 0)
 	{
-		pos = ft_lstsize(*stack1) - pos;
-		while (pos-- > 0)
-			rra(stack1);
-	}
-	else
-	{
-		while (pos-- > 0)
+		while ((*stack1)->content != i)
 			ra(stack1);
+	}
+	else if (half(stack1, temp) == 1)
+	{
+		while ((*stack1)->content != i)
+			rra(stack1);
 	}
 }
 

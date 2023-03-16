@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:46:11 by tburlacu          #+#    #+#             */
-/*   Updated: 2023/03/12 13:06:33 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/13 17:47:39 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,43 @@ void	ft_swap(t_node **stack)
 //este codigo server para tornar o primeiro elemento o ultimo da stack
 void	ft_rotate(t_node **stack)
 {
-	t_node	*tmp;
+	t_node	*temp1;
+	t_node	*temp2;
 
-	if (!*stack)
-		return ;
-	tmp = *stack;
+	temp1 = *stack;
 	*stack = (*stack)->next;
-	ft_lstlast(*stack)->next = tmp;
-	tmp->next = NULL;
+	temp2 = *stack;
+	while (temp2->next)
+		temp2 = temp2->next;
+	temp2->next = temp1;
+	temp1->next = NULL;
 }
 
 //este codigo server para tornar o ultimo elemento para o primeiro da stack
 void	ft_reverse(t_node **stack)
 {
-	t_node	*tmp;
-	t_node	*final;
+	t_node *temp;
 
-	tmp = *stack;
-	if (!*stack || !(*stack)->next)
-		return ;
-	while ((*stack)->next->next)
-	{
+	temp = *stack;
+	while ((*stack)->next)
 		*stack = (*stack)->next;
-	}
-	final = (*stack)->next;
-	final->next = tmp;
-	(*stack)->next = NULL;
-	*stack = final;
+	(*stack)->next = temp;
+	while (temp->next != *stack)
+		temp = temp->next;
+	temp->next = NULL;
 }
 
 //este codigo serve para mandar o primeiro elemento da stack src para a dst
 void	ft_push(t_node **stack1, t_node **stack2)
 {
-	t_node	*top_a;
-	t_node	*top_b;
+	t_node	*temp;
 
-	top_b = *stack2;
-	top_a = *stack1;
-	if (*stack1 == NULL)
-	{
+	if (*stack2 == NULL)
 		return ;
-	}
-	*stack1 = (*stack1)->next;
-	top_a->next = top_b;
-	*stack2 = top_a;
+	temp = *stack2;
+	*stack2 = (*stack2)->next;
+	temp->next = *stack1;
+	*stack1 = temp;
 }
 
 void	rrr(t_node **stack1, t_node **stack2)

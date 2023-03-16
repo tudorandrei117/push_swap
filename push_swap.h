@@ -6,7 +6,7 @@
 /*   By: tudor <tudor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 20:15:05 by tudor             #+#    #+#             */
-/*   Updated: 2023/03/12 13:07:41 by tudor            ###   ########.fr       */
+/*   Updated: 2023/03/13 17:28:31 by tudor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ int					find_lowest(t_node **stack);
 //sorters
 
 //list utils
+int					ft_atoi(const char *str);
 int					find_lowestforshort(t_node *stack);
 void				ft_lstadd_back(t_node **lst, t_node *new);
 t_node				*ft_lstlast(t_node *lst);
 t_node				*ft_addstack(long value);
 int					ft_lstsize(t_node *stack1);
 void				create_list(int ac, char **av, t_node **stack);
-void				lstclear(t_node **lst);
+void				ft_lstclear(t_node **lst);
 t_node				*create_stack(int argc, char **argv);
 void				ft_push_top(t_node **stack1);
 int					find_lowest_index(t_node **stack);
@@ -86,7 +87,6 @@ void				push_to_b(t_node **stack1, t_node **stack2);
 //utils
 int					find_lowest2(int value, t_node **stack);
 int					find_mid(t_node **stack);
-int					ft_atoi(const char *str);
 int					ft_strisdigit(const char *str);
 int					half(t_node **stack, t_node *node);
 long				ft_atol(const char *str);
